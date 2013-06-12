@@ -1,0 +1,27 @@
+{
+    "name": "littleprinterexample",
+    "description": "Example little printer server using littleprinter",
+    "version": "0.0.1",
+    "licenses": [{
+        "type": "MIT",
+        "url": "https://github.com/roylines/node-littleprinter-example/raw/master/LICENSE"
+    }],
+    "author": {
+        "name": "Mark Simpkins",
+        "url": "http://www.geekyoto.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "http://github.com/roylines/node-littleprinter-example.git"
+    },
+    "dependencies": {
+        "ejs": "0.8.2",
+        "express": "3.0.0rc3",
+        "littleprinter": "x.x.x",
+        "request": "x"
+    },
+     "engines": {
+        "node": "0.8.x",
+        "npm":  "1.1.x"
+    }
+}
