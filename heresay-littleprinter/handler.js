@@ -3,10 +3,10 @@ var handler = { };
 // change this meta for your publication
 handler.meta = {
   "owner_email":"mark@geekyoto.com",
-  "publication_api_version":"1.0",
-  "name": "Geekyoto Little Printer Test",
-  "description": "Geekyoto Test for Little Printer",
-  "delivered_on":"every day",
+  "publication_api_version":"1.1",
+  "name": "Heresay Little Printer Test",
+  "description": "Heresay Test for Little Printer",
+  "delivered_on":"on demand",
   "external_configuration": false,
   "send_timezone_info": true,
   "send_delivery_count": true,

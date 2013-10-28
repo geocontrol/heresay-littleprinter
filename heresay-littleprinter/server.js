@@ -11,6 +11,7 @@ app.set('view engine', 'ejs'); // in this example I am using ejs, feel free to u
 app.get('/sample', heresay.sample);
 app.get('/edition', heresay.edition);
 app.post('/validate_config', heresay.validateconfig);
+app.get('/push', heresay.push);
 
 littleprinter.setup(app, handler);
 
