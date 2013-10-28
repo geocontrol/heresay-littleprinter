@@ -99,10 +99,11 @@ exports.push = function(req, res){
 				res.render('push_edition.ejs',{
 					layout:true,
 					locals:{favouritePosts: recievedJSON}
-				}, function(err, printhtml){
-					printhtml = 'html=<html><body><h1>Print from script Test.</h1></body></html>';
-					console.log('The HTML to return' + printhtml);
-					request.post('http://remote.bergcloud.com/playground/direct_print/833KTA6TSEPC').form({html:printhtml});
+				}, function(err, print_html){
+					//printhtml = '<html><body><h1>Print from script Test.</h1></body></html>';
+					console.log('The HTML to return' + print_html);
+					//request.get('http://remote.bergcloud.com/playground/direct_print/833KTA6TSEPC?html=' + print_html);
+					request.post('http://remote.bergcloud.com/playground/direct_print/833KTA6TSEPC', {form:{html:print_html}});
 				});
 				res.send('ok');
 			}
