@@ -18,7 +18,9 @@
         "ejs": "0.8.2",
         "express": "3.0.0rc3",
         "littleprinter": "x.x.x",
-        "request": "x"
+        "request": "x",
+		"mongoose": "3.5.x",
+		"oauth": "x"
     },
      "engines": {
         "node": "0.8.x",

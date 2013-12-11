@@ -1,1 +1,27 @@
-<html><head><title>heresay</title></head><body><div id="heading"><h1>HereSay</h1><h1></h1></div><% for(var i=0; i< 4; i++) {%><div class="classified"><h2><%= favouritePosts[i]['title'] %></h2><p><% var str = String(favouritePosts[i]['tags']); var tags = str.replace(",",", "); %><%= tags %><br/><%= favouritePosts[i]['ward'] %><br/><%= favouritePosts[i]['short_url'] %></p></div><%}%></body></html>
+<html><head>
+  <title>heresay</title>
+  <style type="text/css">
+    body {
+      width: 384px;
+      padding: 0px;
+      margin: 0px;
+    }
+    h1,h2 {
+      font-family:"Times";
+    }
+
+    #heading {
+	  text-align: center
+	}
+	
+	#heading.h1 {
+		font-size: 24px;
+	}
+
+	.classified {
+		width: 380px;
+		margin: 2px;
+		outline-style:dashed;
+	}
+  </style>
+</head><body><div id="heading"><h1>HereSay</h1><h1></h1></div><% for(var i=0; i< 4; i++) {%><div class="classified"><h2><%= favouritePosts[i]['title'] %></h2><p><% var str = String(favouritePosts[i]['tags']); var tags = str.replace(",",", "); %><%= tags %><br/><%= favouritePosts[i]['ward'] %><br/><%= favouritePosts[i]['short_url'] %></p></div><%}%></body></html>
