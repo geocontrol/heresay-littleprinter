@@ -10,7 +10,30 @@ handler.meta = {
   "delivery_type":"push",
   "external_configuration": false,
   "send_timezone_info": true,
-  "send_delivery_count": true
+  "send_delivery_count": true,
+  "config": {
+	  "fields": [
+	  	{
+	  		"type": "select",
+			"name": "borough",
+			"label": "Select your borough: ",
+			"options": [
+				["Lewisham", "lewisham"],
+				["Camden", "camden"]
+			]
+	  	},
+		{
+			"type": "text",
+			"name": "postcode",
+			"label": "Or postcode: "
+		},
+		{
+			"type": "text",
+			"name": "instance_name",
+			"label": "Printer Installation Name: "
+		}
+	]
+  }
 };
 
 //use default edition handler

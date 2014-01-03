@@ -146,6 +146,7 @@ exports.push = function(req, res){
 exports.validateconfig = function(req,res){
 	
 	// Need to get the values subscription_id and endpoint added to the db
+	// Added in the values that would be set in the subscription
 	
 	var config = JSON.parse(req.body.config);
 	console.log(req.body.subscription_id);
@@ -153,6 +154,9 @@ exports.validateconfig = function(req,res){
 	new UserRecord({
 		subscription_id : config['subscription_id'],
 		endpoint : config['endpoint'],
+		borough: config['borough'],
+		postcode: config['postcode'],
+		instance_name: config['instance_name']
 		updated_at : Date.now()
 	}).save( function( err, record, count ){
 		console.log('Record written to DB.');
