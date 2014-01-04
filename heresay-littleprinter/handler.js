@@ -18,8 +18,9 @@ handler.meta = {
 			"name": "borough",
 			"label": "Select your borough: ",
 			"options": [
-				["Lewisham", "lewisham"],
-				["Camden", "camden"]
+				["Lewisham", "Lewisham"],
+				["Camden", "Camden"],
+				["Kensington & Chelsea", "Kensington%20and%20Chelsea%20Borough%20Council"]
 			]
 	  	},
 		{

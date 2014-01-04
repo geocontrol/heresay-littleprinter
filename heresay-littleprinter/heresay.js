@@ -100,7 +100,65 @@ exports.push = function(req, res){
 			layout:true
 		});
 	} else {
-		request.get('http://heresay.org.uk/api/get_recent_updates.php?borough=Kensington%20and%20Chelsea%20Borough%20Council', function (error, response, body) {
+		
+		// Get the printer instance ID
+		printer_instance = req.param('instance');
+		
+		// Check that the ID exists in the DB
+		UserRecord.find({instance_name: printer_instance}, function (err, UserRecord){
+			if (err) return handleError(err);
+			if (UserRecord.borough) {
+				// Borough Not Blank
+				borough = UserRecord.borough;
+				request.get('http://heresay.org.uk/api/get_recent_updates.php?borough=' + borough, function (error, response, body) {
+					if (!error && response.statusCode == 200) {
+						console.log(body) // Output response to console
+						jsonObject = JSON.parse(body);
+						recievedJSON = jsonObject.results;
+						res.render('push_edition.ejs',{
+							layout:true,
+							locals:{favouritePosts: recievedJSON}
+						}, function(err, print_html){
+							console.log('The HTML to return' + print_html);				
+							var params = {
+							    html : print_html
+							};
+							// Authenticate against BERGcloud
+							var oauth = new OAuth(
+								'http://api.bergcloud.com',
+								oauth_access_token,
+								oauth_consumer_key,
+								oauth_consumer_secret,
+								'1.0',
+								null,
+								'HMAC-SHA1'
+							);
+							oauth.post(
+							  "http://api.bergcloud.com/v1/subscriptions/f319a636cdde52df0d7707fbafd07752e3e91b1c/publish",
+							  oauth_access_token, oauth_access_token_secret,
+							  params, "multipart/form-data",
+						      function (error, data, response2) {
+						      if(error){
+						          console.log('Error: Something is wrong.\n'+JSON.stringify(error)+'\n');
+
+						      }else{
+						          console.log('Something posted.\n');
+						          console.log(response2+'\n');
+						      }
+						      });	
+							res.send('done');		
+					});
+				};
+			});
+			} else {
+				// No Borough, Get Postcode
+				postcode = UserRecord.postcode;
+				console.log('No Borough Selected - Try Postcode');
+			}
+		});
+		// If it does get the Borough and make the push request (If A Borough has been selected)
+
+/*		request.get('http://heresay.org.uk/api/get_recent_updates.php?borough=Kensington%20and%20Chelsea%20Borough%20Council', function (error, response, body) {
 			if (!error && response.statusCode == 200) {
 				console.log(body) // Output response to console
 				jsonObject = JSON.parse(body);
@@ -140,6 +198,10 @@ exports.push = function(req, res){
 			});
 		};
 	});
+**/	
+	// Else Do not Push anything 
+	
+	
 	};
 };
 
