@@ -156,7 +156,7 @@ exports.validateconfig = function(req,res){
 		endpoint : config['endpoint'],
 		borough: config['borough'],
 		postcode: config['postcode'],
-		instance_name: config['instance_name']
+		instance_name: config['instance_name'],
 		updated_at : Date.now()
 	}).save( function( err, record, count ){
 		console.log('Record written to DB.');
