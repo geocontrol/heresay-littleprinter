@@ -103,10 +103,12 @@ exports.push = function(req, res){
 		
 		// Get the printer instance ID
 		printer_instance = req.param('instance');
+		console.log('Request from instance: ' + printer_instance);
 		
 		// Check that the ID exists in the DB
 		UserRecord.find({instance_name: printer_instance}, function (err, UserRecord){
 			if (err) return handleError(err);
+			console.log(UserRecord);
 			if (UserRecord.borough) {
 				// Borough Not Blank
 				borough = UserRecord.borough;
