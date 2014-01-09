@@ -99,20 +99,18 @@ exports.push = function(req, res){
 		res.render('validator.ejs',{
 			layout:true
 		});
-	} else {
-		
+	} else {		
 		// Get the printer instance ID
-		printer_instance = req.param('instance');
-		console.log('Request from instance: ' + printer_instance);
-		
+		//printer_instance = req.param('instance');
+		//console.log('Request from instance: ' + printer_instance);	
 		// Check that the ID exists in the DB
-		UserRecord.find({instance_name: printer_instance}, function (err, UserRecord){
-			if (err) return handleError(err);
-			console.log(UserRecord);
-			if (UserRecord.borough) {
+		//UserRecord.find({instance_name: printer_instance}, function (err, UserRecord){
+			//if (err) return handleError(err);
+			//console.log(UserRecord);
+			//if (UserRecord.borough) {
 				// Borough Not Blank
-				borough = UserRecord.borough;
-				request.get('http://heresay.org.uk/api/get_recent_updates.php?borough=' + borough, function (error, response, body) {
+				//borough = UserRecord.borough;
+				request.get('http://heresay.org.uk/api/get_recent_updates.php?borough=Kensington%20and%20Chelsea%20Borough%20Council', function (error, response, body) {
 					if (!error && response.statusCode == 200) {
 						console.log(body) // Output response to console
 						jsonObject = JSON.parse(body);
@@ -152,12 +150,12 @@ exports.push = function(req, res){
 					});
 				};
 			});
-			} else {
+	//		} else {
 				// No Borough, Get Postcode
-				postcode = UserRecord.postcode;
-				console.log('No Borough Selected - Try Postcode');
-			}
-		});
+	//			postcode = UserRecord.postcode;
+	//			console.log('No Borough Selected - Try Postcode');
+	//		}
+	//	});
 		// If it does get the Borough and make the push request (If A Borough has been selected)
 
 /*		request.get('http://heresay.org.uk/api/get_recent_updates.php?borough=Kensington%20and%20Chelsea%20Borough%20Council', function (error, response, body) {
